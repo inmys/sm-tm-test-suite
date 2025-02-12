@@ -22,7 +22,7 @@ void MainWindow::executeScript(QString cmd){
     if (processState == QProcess::NotRunning){
         QStringList params;
         //params << "-u" <<"/home/garlicdogg/projects/3_rk3568_telematika_smtm/burn/python-test-suite/test-sm-tm.py" << "-q";
-        params << "-u" <<"/opt/python-test-suite/test-sm-tm.py" << "-q";
+        params << "-u" <<"/test-sm-tm.py" << "-q";
         if (ui->isDebugMode->isChecked()){
             params << "-v";
         }
