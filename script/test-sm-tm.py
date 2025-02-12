@@ -78,7 +78,7 @@ def test_pci():
 # UART3(X10_RA) lopback test
 def test_uart(mode = "single"): 
     ret = 0
-    with ser.Serial('/dev/ttyS5', 115200, timeout=2, rtscts=1) as uart1, ser.Serial('/dev/ttyS4', 115200, timeout=2, rtscts=1) as uart2, ser.Serial('/dev/ttyS0') as uart3:
+    with ser.Serial('/dev/ttyS5', 115200, timeout=2, rtscts=1) as uart1, ser.Serial('/dev/ttyS4', 115200, timeout=2, rtscts=1) as uart2, ser.Serial('/dev/ttyS0', timeout=2) as uart3:
         while(True):
             uart1.write(b'tst_ttyS5_ttyS4\n') 
             res = uart2.readline()
@@ -364,4 +364,9 @@ if len(sys.argv) >= 2:
     else:
         logger.error(f'[FAIL] {testOption} test failed')
 else:
-    complex_test()
+    logger.info(f'[START] COMPLEX test started')
+    ret = complex_test()
+    if ret == 0:
+        logger.warning(f'[SUCCESS] COMPLEX test passed')
+    else:
+        logger.error(f'[FAIL] COMPLEX test failed')
